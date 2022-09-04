@@ -15,18 +15,15 @@ def cmd_start(message):
 def bot_mensajes_texto(message):
     # si el mensaje de texto empieza con /
     if message.text.startswith("/"):
-        # envia al chat.id de donde vien el request el siguiente texto
         bot.send_message(message.chat.id, "comando no disponible")
+    
 
     # de lo contrario
     else:
-        # envia mensaje al chatid del message recibido en formato html
-        # x = bot.send_message(message.chat.id, "<b>HOLA</b>", parse_mode="html", disable_web_page_preview=True)
-        # espere 3 segundos
-        time.sleep(3)
-        # Borra mensaje x enviado por CLIENTE, necesita chat_id y message_id para borrarlo
-        # el message_id lo toma del objeto message
-        bot.delete_message(message.chat.id, message.message_id)
+        
+        foto = open("./imagenes/screen.png", "rb")
+        #  envia al chat.id de donde vien el request la sighuente foto
+        bot.send_photo(message.chat.id, foto, "imagenson")#
 
 
 # MAIN#####################################
