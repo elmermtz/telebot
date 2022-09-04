@@ -10,17 +10,22 @@ bot = telebot.TeleBot(TELEGRAM_TOKEN)
 def cmd_start(message):
     bot.reply_to(message, "Hola!. Como andamios?")
 
-# responde a texto
+# borra mensaje de texto en 3 segundos
 @bot.message_handler(content_types=["text"])
 def bot_mensajes_texto(message):
+    # si el mensaje de texto empieza con /
     if message.text.startswith("/"):
         # envia al chat.id de donde vien el request el siguiente texto
         bot.send_message(message.chat.id, "comando no disponible")
-        
+
+    # de lo contrario
     else:
+        # envia mensaje al chatid del message recibido en formato html
         x = bot.send_message(message.chat.id, "<b>HOLA</b>", parse_mode="html", disable_web_page_preview=True)
+        # espere 3 segundos
         time.sleep(3)
-        bot.edit_message_text("<u>ADIOS</u>", message.chat.id, x.message_id, parse_mode="html")
+        # Borra mensaje x enviado por bot, necesita chat_id y message_id para borrarlo
+        bot.delete_message(message.chat.id, x.message_id)
 
 
 # MAIN#####################################
