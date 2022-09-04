@@ -21,11 +21,12 @@ def bot_mensajes_texto(message):
     # de lo contrario
     else:
         # envia mensaje al chatid del message recibido en formato html
-        x = bot.send_message(message.chat.id, "<b>HOLA</b>", parse_mode="html", disable_web_page_preview=True)
+        # x = bot.send_message(message.chat.id, "<b>HOLA</b>", parse_mode="html", disable_web_page_preview=True)
         # espere 3 segundos
         time.sleep(3)
-        # Borra mensaje x enviado por bot, necesita chat_id y message_id para borrarlo
-        bot.delete_message(message.chat.id, x.message_id)
+        # Borra mensaje x enviado por CLIENTE, necesita chat_id y message_id para borrarlo
+        # el message_id lo toma del objeto message
+        bot.delete_message(message.chat.id, message.message_id)
 
 
 # MAIN#####################################
