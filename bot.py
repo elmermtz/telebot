@@ -1,6 +1,7 @@
 import time
 from config import *
 import telebot
+import threading
 
 # Se instancia el bot
 bot = telebot.TeleBot(TELEGRAM_TOKEN)
@@ -33,10 +34,15 @@ def bot_mensajes_texto(message):
     # else:
     #     pass
 
+# funcion con bucle infinito
+def recibir_mensajes():
+    bot.infinity_polling()
 
 # MAIN#####################################
 
 if __name__ == '__main__':
     print('Iniciando el bot')
-    bot.infinity_polling()
+    # con el threading permite correr funcion cuando sea lamada y seguir ejecutando otras cosas
+    hilo_bot = threading.Thread(name="hilo_bot", target=recibir_mensajes)
+    hilo_bot.start()
     print('Fin')
