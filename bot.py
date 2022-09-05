@@ -10,7 +10,7 @@ bot = telebot.TeleBot(TELEGRAM_TOKEN)
 def cmd_start(message):
     bot.reply_to(message, "Hola!. Como andamios?")
 
-# borra mensaje de texto en 3 segundos
+# ENVIAR DOCUMENTO
 @bot.message_handler(content_types=["text"])
 def bot_mensajes_texto(message):
     # si el mensaje de texto empieza con /
@@ -21,9 +21,9 @@ def bot_mensajes_texto(message):
     # de lo contrario
     else:
         
-        foto = open("./imagenes/screen.png", "rb")
-        #  envia al chat.id de donde vien el request la sighuente foto
-        bot.send_photo(message.chat.id, foto, "imagenson")#
+        archivo = open("./docs/lukas.odt", "rb")
+        #  envia al chat.id de donde vien el request el siguiente archivo
+        bot.send_document(message.chat.id, archivo, caption="DOCUMENTO")
 
 
 # MAIN#####################################
