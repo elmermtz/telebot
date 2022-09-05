@@ -21,7 +21,8 @@ def bot_mensajes_texto(message):
 
     # de lo contrario
     else:
-        
+        # muestra la accion que esta llevando a cabo el bot
+        bot.send_chat_action(message.chat.id, "upload_document")
         archivo = open("./docs/lukas.odt", "rb")
         #  envia al chat.id de donde vien el request el siguiente archivo
         bot.send_document(message.chat.id, archivo, caption="DOCUMENTO")
